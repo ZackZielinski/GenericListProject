@@ -187,27 +187,80 @@ namespace GenericListUnitTesting
         }
 
         [TestMethod]
-        public void DoCustomArraysZip()
+        public void DoCustomArraysZipSameDataType()
+        {
+            //Arrange
+            GenericList<int> OddNumberList = new GenericList<int>();
+            GenericList<int> EvenNumberList = new GenericList<int>();
+
+
+            //Act
+            OddNumberList.Add(1);
+            OddNumberList.Add(3);
+            OddNumberList.Add(5);
+
+            EvenNumberList.Add(2);
+            EvenNumberList.Add(4);
+            EvenNumberList.Add(6);
+
+            OddNumberList.Zip(EvenNumberList, (first, second) => first + " , " + second);
+            
+            //Assert
+            Assert.IsTrue(OddNumberList[6] == 6);
+        }
+
+        [TestMethod]
+        public void DoCustomArraysZipDifferentDataTypes()
         {
             //Arrange
             GenericList<int> NumberList = new GenericList<int>();
-            GenericList<int> WordList = new GenericList<int>();
-            
+            GenericList<string> WordList = new GenericList<string>();
+
 
             //Act
             NumberList.Add(1);
             NumberList.Add(2);
             NumberList.Add(3);
 
-            WordList.Add(2);
-            WordList.Add(4);
-            WordList.Add(6);
+            WordList.Add("one");
+            WordList.Add("two");
+            WordList.Add("three");
 
             NumberList.Zip(WordList, (first, second) => first + " , " + second);
-            
+
             //Assert
-            Assert.IsTrue(NumberList[6] == 6);
-        } 
+            Assert.IsTrue(NumberList[6] == "three");
+        }
+        [TestMethod]
+        public void DoCustomArraysZipAZippedList()
+        {
+            //Arrange
+            GenericList<int> OddNumberList = new GenericList<int>();
+            GenericList<int> EvenNumberList = new GenericList<int>();
+            GenericList<string> WordList = new GenericList<string>();
+            GenericList<T> CustomList =  new GenericList<T>();
+            //Act
+            OddNumberList.Add(1);
+            OddNumberList.Add(3);
+            OddNumberList.Add(5);
+
+            EvenNumberList.Add(2);
+            EvenNumberList.Add(4);
+            EvenNumberList.Add(6);
+
+            WordList.Add("one");
+            WordList.Add("two");
+            WordList.Add("three");
+            WordList.Add("four");
+            WordList.Add("five");
+            WordList.Add("six");
+            OddNumberList.Zip(EvenNumberList, (first, second) => first + " , " + second);
+
+            CustomList = OddNumberList.Zip(WordList, (first, second) => first + " , " + second);
+
+            //Assert
+            Assert.IsTrue(CustomList[11] == "six");
+        }
 
         [TestMethod]
         public void DoestheListSwapTwoValues()
@@ -242,10 +295,61 @@ namespace GenericListUnitTesting
             //Assert
             Assert.AreEqual(ExpectedResult, ActualResult);
 
+        }
+
+        [TestMethod]
+        public void OverloadingPlusOperatorMultipleTimes()
+        {
+            //Arrange
+            GenericList<int> CustomList = GenericList<int>();
+            int ExpectedResult = 158;
+            int ActualResult;
+
+            //Act
+            CustomList.Add(34);
+            CustomList.Add(45);
+
+            ActualResult = CustomList[0] + CustomList[1] + CustomList[0] + CustomList[1];
+            //Assert
+            Assert.AreEqual(ExpectedResult, ActualResult);
 
         }
 
+        [TestMethod]
+        public void OverloadingMinusOperator()
+        {
+            //Arrange
+            GenericList<int> CustomList = GenericList<int>();
+            int ExpectedResult = -11;
+            int ActualResult;
 
+            //Act
+            CustomList.Add(34);
+            CustomList.Add(45);
 
+            ActualResult = CustomList[0] - CustomList[1];
+            //Assert
+            Assert.AreEqual(ExpectedResult, ActualResult);
+
+        }
+
+        [TestMethod]
+        public void OverloadingMinusOperatorMultipleTimes()
+        {
+            //Arrange
+            GenericList<int> CustomList = GenericList<int>();
+            int ExpectedResult = 4;
+            int ActualResult;
+
+            //Act
+            CustomList.Add(200);
+            CustomList.Add(45);
+            CustomList.Add(53);
+
+            ActualResult = CustomList[0] - CustomList[1] - CustomList[2] - CustomList[1] - CustomList[2];
+            //Assert
+            Assert.AreEqual(ExpectedResult, ActualResult);
+
+        }
     }
 }

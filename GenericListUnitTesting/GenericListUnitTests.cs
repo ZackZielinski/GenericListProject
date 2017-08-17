@@ -12,19 +12,19 @@ namespace GenericListUnitTesting
         {
             //Arrange
             GenericList<int> CustomList = new GenericList<int>();
-            int? ExpectedResult = null;
+            int ExpectedResult = 35;
             int? ActualResult = null;
 
 
             //Act
-            CustomList.Add(35);
+            CustomList.Add(ExpectedResult);
 
             ActualResult = CustomList[0];
 
             //Assert
-            Assert.IsTrue(ExpectedResult != ActualResult);
+            Assert.AreEqual(ExpectedResult, ActualResult);
         }
-
+        /*
         [TestMethod]
         public void DoesTheArrayAddMultipleValues()
         {
@@ -114,14 +114,14 @@ namespace GenericListUnitTesting
         public void ListConvertToString()
         {
             //Arrange
-            GenericList<string> CustomList = new GenericList<string>();
+            GenericList<int> CustomList = new GenericList<int>();
             string ExpectedResult = "357";
             string ActualResult;
 
             //Act
             CustomList.Add(357);
 
-            ActualResult = CustomList[0].ToString;
+            ActualResult = CustomList[0].ToString();
 
             //Assert
             Assert.IsTrue(ExpectedResult == ActualResult);
@@ -132,7 +132,7 @@ namespace GenericListUnitTesting
         public void DoesListConvertMultipleValuesToString()
         {
             //Arrange
-            GenericList<string> CustomList = new GenericList<string>();
+            GenericList<int> CustomList = new GenericList<int>();
             string ExpectedResult = "357 , 43524, 746";
             string ActualResult;
 
@@ -141,7 +141,7 @@ namespace GenericListUnitTesting
             CustomList.Add(43524);
             CustomList.Add(746);
 
-            ActualResult = CustomList.ToString;
+            ActualResult = CustomList.ToString();
 
             //Assert
             Assert.IsTrue(ExpectedResult == ActualResult);
@@ -229,7 +229,7 @@ namespace GenericListUnitTesting
             NumberList.Zip(WordList, (first, second) => first + " , " + second);
 
             //Assert
-            Assert.IsTrue(NumberList[6] == "three");
+            Assert.IsTrue(NumberList[6].ToString() == "three");
         }
         [TestMethod]
         public void DoCustomArraysZipAZippedList()
@@ -283,7 +283,7 @@ namespace GenericListUnitTesting
         public void OverloadingPlusOperator()
         {
             //Arrange
-            GenericList<int> CustomList = GenericList<int>();
+            GenericList<int> CustomList = new GenericList<int>();
             int ExpectedResult = 79;
             int ActualResult;
 
@@ -301,7 +301,7 @@ namespace GenericListUnitTesting
         public void OverloadingPlusOperatorMultipleTimes()
         {
             //Arrange
-            GenericList<int> CustomList = GenericList<int>();
+            GenericList<int> CustomList = new GenericList<int>();
             int ExpectedResult = 158;
             int ActualResult;
 
@@ -319,7 +319,7 @@ namespace GenericListUnitTesting
         public void OverloadingMinusOperator()
         {
             //Arrange
-            GenericList<int> CustomList = GenericList<int>();
+            GenericList<int> CustomList = new GenericList<int>();
             int ExpectedResult = -11;
             int ActualResult;
 
@@ -337,7 +337,7 @@ namespace GenericListUnitTesting
         public void OverloadingMinusOperatorMultipleTimes()
         {
             //Arrange
-            GenericList<int> CustomList = GenericList<int>();
+            GenericList<int> CustomList = new GenericList<int>();
             int ExpectedResult = 4;
             int ActualResult;
 
@@ -351,5 +351,6 @@ namespace GenericListUnitTesting
             Assert.AreEqual(ExpectedResult, ActualResult);
 
         }
+        */
     }
 }

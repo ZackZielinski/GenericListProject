@@ -1,0 +1,7 @@
+C:\Users\Zack\Desktop\C# (Sharp)\GenericListUnitTesting\GenericListUnitTesting\obj\Debug\GenericListUnitTesting.csprojResolveAssemblyReference.cache
+C:\Users\Zack\Desktop\C# (Sharp)\GenericListUnitTesting\GenericListUnitTesting\bin\Debug\GenericListUnitTesting.dll
+C:\Users\Zack\Desktop\C# (Sharp)\GenericListUnitTesting\GenericListUnitTesting\bin\Debug\GenericListUnitTesting.pdb
+C:\Users\Zack\Desktop\C# (Sharp)\GenericListUnitTesting\GenericListUnitTesting\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.dll
+C:\Users\Zack\Desktop\C# (Sharp)\GenericListUnitTesting\GenericListUnitTesting\bin\Debug\Microsoft.VisualStudio.QualityTools.UnitTestFramework.xml
+C:\Users\Zack\Desktop\C# (Sharp)\GenericListUnitTesting\GenericListUnitTesting\obj\Debug\GenericListUnitTesting.dll
+C:\Users\Zack\Desktop\C# (Sharp)\GenericListUnitTesting\GenericListUnitTesting\obj\Debug\GenericListUnitTesting.pdb

@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace GenericListUnitTesting
 {
-    public class GenericSwapMethod<T>
+    public class GenericSwap<T>
     {
         public void SwapMethod(ref T item1, ref T item2)
         {

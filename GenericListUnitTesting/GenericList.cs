@@ -11,31 +11,44 @@ namespace GenericListUnitTesting
         T[] itemArray = new T[0];
         int size = 0;
         int capacity = 0;
-        int counter = 0;
-
-
-        public int Count()
+        int counter;
+        
+        public int Count
         {
+            get { return counter = Increment(); }
+            set  { counter = value; }
+        }
 
+        private int Increment()
+        {
+            int countedValues = 0;
             if (size == capacity)
             {
                 capacity = capacity == 0 ? 4 : capacity * 2;
+                itemArray = new T[capacity];
             }
-
-            for (int i = 0; i < Convert.ToInt32(itemArray[capacity]); i++)
-            {
-                if (itemArray[i] != null)
+            if (size == 0) {
+                for (int x = countedValues; x < capacity - 1; x++)
                 {
-                    counter++;
+                    if (itemArray[x] == null)
+                    {
+                        countedValues++;
+                    }
                 }
-
             }
-            size++;
-            return counter;
+            else {
+                for (int x = countedValues; x < capacity - 1; x++) {
+                    if (itemArray[x] != null)
+                    {
+                        countedValues++;
+                    }
+                }
+            }
+           return countedValues;
         }
+
         public void Add(T value)
         {
-            
 
             if (size == capacity)
             {
@@ -44,16 +57,18 @@ namespace GenericListUnitTesting
             }
 
 
-            for (int i = 0; i < Convert.ToInt32(itemArray[capacity-1]); i++)
+            for (int i = size; i < capacity; i++)
             {
-                if (itemArray[i] == null)
+                if (itemArray[i] != null)
                 {
-                    itemArray[capacity] = value;
+                    itemArray[i] = value;
                 }
                 
             }
             size++;
         }
+
+
         public T this[int index]
         {
             get

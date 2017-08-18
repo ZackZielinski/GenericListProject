@@ -8,11 +8,30 @@ namespace GenericListUnitTesting
 {
     public class GenericList<T>
     {
-        T[] itemArray = new T[0];
-        int size = 0;
-        int capacity = 0;
-        int counter;
-        
+        private T[] itemArray;
+        private int size;
+        private int capacity;
+        private int counter;
+        private bool IsFirstArray;
+        private bool IsRemoveUsed;
+        private int numbersRemoved;
+
+        public GenericList()
+        {
+            itemArray = new T[0];
+            size = 0;
+            capacity = 0;
+            IsFirstArray = true;
+            IsRemoveUsed = false;
+            numbersRemoved = 0;
+        }
+        public T this[int i]
+        {
+            get { return itemArray[i]; }
+            set { itemArray[i] = value; }
+        }
+
+
         public int Count
         {
             get { return counter = Increment(); }
@@ -22,26 +41,24 @@ namespace GenericListUnitTesting
         private int Increment()
         {
             int countedValues = 0;
-            if (size == capacity)
-            {
-                capacity = capacity == 0 ? 4 : capacity * 2;
-                itemArray = new T[capacity];
-            }
-            if (size == 0) {
-                for (int x = countedValues; x < capacity - 1; x++)
+            
+            if (size != 0) {
+                for (int x = countedValues; x < size; x++)
                 {
-                    if (itemArray[x] == null)
+                    if (itemArray[x] != null)
                     {
                         countedValues++;
                     }
                 }
             }
             else {
-                for (int x = countedValues; x < capacity - 1; x++) {
-                    if (itemArray[x] != null)
-                    {
-                        countedValues++;
-                    }
+                countedValues = 0;
+            }
+            for (int x = 0; x < numbersRemoved; x++)
+            {
+                if (IsRemoveUsed == true)
+                {
+                    countedValues--;
                 }
             }
            return countedValues;
@@ -53,56 +70,77 @@ namespace GenericListUnitTesting
             if (size == capacity)
             {
                 capacity = capacity == 0 ? 4 : capacity * 2;
-                itemArray = new T[capacity];
+                T[] tempArray = new T[capacity];
+
+                if (IsFirstArray == true)
+                {
+                    itemArray = tempArray;
+                    IsFirstArray = false;
+                }
+                else
+                {
+                    for (int x = 0; x < size; x++)
+                    {
+                        tempArray[x] = itemArray[x];
+                    }
+
+                    itemArray = tempArray;
+                }
             }
 
 
             for (int i = size; i < capacity; i++)
             {
-                if (itemArray[i] != null)
+                if (i > size)
                 {
-                    itemArray[i] = value;
+                    itemArray[i] = default(T);
+                }
+                else
+                {
+                    if (itemArray[i] != null)
+                    {
+                        itemArray[i] = value;
+                    }
                 }
                 
             }
             size++;
+
         }
 
-
-        public T this[int index]
-        {
-            get
-            {
-                if (index < 0 || index >= size)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-                return itemArray[index];
-            }
-            set
-            {
-                if (index < 0 || index >= size)
-                {
-                    throw new IndexOutOfRangeException();
-                }
-                itemArray[index] = value;
-            }
-        }
-
-
-        /*
+        
         public void Remove(T value)
         {
-
-            for (int i = 0; i < Convert.ToInt32(itemArray[capacity]); i++)
+           for (int i = 0; i < capacity; i++)
             {
-                if (itemArray[i] == value)
+                
+                if (itemArray[i].Equals(value))
                 {
-                  
+                    numbersRemoved++;
+                    itemArray[i] = itemArray[i + 1];
+
+                    for (int j = i; j < size+1; j++)
+                    {
+                        if (j == size)
+                        {
+                            itemArray[j] = default(T);
+                        }
+                        else
+                        {
+                            itemArray[j] = itemArray[j + 1];
+                        }
+                    }
                 }
             }
-            size--;
-         }
-         */
+
+            IsRemoveUsed = true;
+        }
+      /*   
+        public string AsString()
+        {
+            
+            return "";
+        }
+        */
     }
 }

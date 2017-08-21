@@ -50,9 +50,9 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="GenericSwapMethod.cs" />
     <Compile Include="GenericList.cs" />
     <Compile Include="GenericListUnitTests.cs" />
-    <Compile Include="GenericSwapMethod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Choose>

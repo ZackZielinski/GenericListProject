@@ -7,25 +7,27 @@ using System.Threading.Tasks;
 
 namespace GenericListUnitTesting
 {
-    public class GenericList<T>
+    public class GenericList<T> : IEnumerable
     {
         private T[] itemArray;
         private int size;
         private int capacity;
         private int counter;
+        private int numbersRemoved;
         private bool IsFirstArray;
         private bool IsRemoveUsed;
-        private int numbersRemoved;
         private string StringResult;
+        
 
         public GenericList()
         {
             itemArray = new T[0];
             size = 0;
             capacity = 0;
+            numbersRemoved = 0;
             IsFirstArray = true;
             IsRemoveUsed = false;
-            numbersRemoved = 0;
+            
         }
         public T this[int i]
         {
@@ -171,10 +173,61 @@ namespace GenericListUnitTesting
             
         }
 
-        public static GenericList<T> operator +(GenericList<T> FirstList, GenericList<T> SecondList)
+        public IEnumerator GetEnumerator()
         {
-
+            for (int x = 0; x < size; x++)
+            {
+                yield return $"{itemArray[x]}";
+            }
         }
 
+        public static GenericList<T> operator + (GenericList<T> FirstList, GenericList<T> SecondList)
+        {
+            if (FirstList.capacity == 0)
+            {
+                FirstList.capacity = FirstList.itemArray.Count();
+            }
+
+            GenericList<T> AddedList = new GenericList<T>();
+
+            for (int i = 0; i < FirstList.size; i++)
+            {
+                AddedList.Add(FirstList[i]);
+            }
+
+            for (int j = 0; j < SecondList.size; j++)
+            {
+                AddedList.Add(SecondList[j]);
+            }
+
+            return AddedList;
+        }
+
+        public static GenericList<T> operator -(GenericList<T> FirstList, GenericList<T> SecondList)
+        {
+            GenericList<T> SubtractedList = new GenericList<T>();
+            
+
+            for (int x = 0; x < SecondList.size; x++)
+            {
+                bool IsDuplicate = false;
+
+                for (int y = 0; y < FirstList.size; y++)
+                {
+                    if (FirstList[y].Equals(SecondList[x]))
+                    {
+                        IsDuplicate = true;
+                        break;
+                    }
+                    else if (IsDuplicate == false)
+                    {
+                        SubtractedList.Add(FirstList[y]);
+                    }
+                }
+            }
+
+
+            return SubtractedList;
+        }
     }
 }

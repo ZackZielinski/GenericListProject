@@ -353,7 +353,7 @@ namespace GenericListUnitTesting
             //Arrange
             GenericList<int> CustomList = new GenericList<int>();
             GenericList<int> ExpectedResult = new GenericList<int>();
-            int ActualResult;
+            GenericList<int> ActualResult = new GenericList<int>();
 
             //Act
             ExpectedResult.Add(34);
@@ -367,21 +367,21 @@ namespace GenericListUnitTesting
             ActualResult = CustomList + CustomList;
 
             //Assert
-            Assert.AreEqual(ExpectedResult, ActualResult);
+            Assert.AreEqual(ExpectedResult[3], ActualResult[3]);
 
         }
 
-        /*
 
         [TestMethod]
-        public void UseageOfPlusOperatorTwice()
+        public void AddingAListWithinAnAddedList()
         {
             //Arrange
             GenericList<int> EvenList = new GenericList<int>();
             GenericList<int> OddList = new GenericList<int>();
             GenericList<int> CustomList = new GenericList<int>();
             GenericList<int> ExpectedResult = new GenericList<int>();
-            int ActualResult;
+            GenericList<int> ActualResult = new GenericList<int>();
+            GenericList<int> NumberedList = new GenericList<int>();
 
             //Act
             ExpectedResult.Add(1);
@@ -391,22 +391,25 @@ namespace GenericListUnitTesting
             ExpectedResult.Add(5);
             ExpectedResult.Add(6);
 
-            EvenList.Add(2);
-            EvenList.Add(4);
-
             OddList.Add(1);
             OddList.Add(3);
+
+            EvenList.Add(2);
+            EvenList.Add(4);
 
             CustomList.Add(5);
             CustomList.Add(6);
 
-            ActualResult = (OddList + EvenList) + CustomList;
+            NumberedList = OddList + EvenList;
+
+            ActualResult = NumberedList + CustomList;
 
             //Assert
-            Assert.AreEqual(ExpectedResult, ActualResult);
+            Assert.AreEqual(ExpectedResult[5], ActualResult[5]);
 
         }
 
+        
         [TestMethod]
         public void OverloadingMinusOperator()
         {
@@ -414,7 +417,7 @@ namespace GenericListUnitTesting
             GenericList<int> CustomList = new GenericList<int>();
             GenericList<int> ExpectedResult = new GenericList<int>();
             GenericList<int> DuplicateList = new GenericList<int>();
-            int ActualResult;
+            GenericList<int> ActualResult = new GenericList<int>();
 
             //Act
             ExpectedResult.Add(1);
@@ -431,10 +434,11 @@ namespace GenericListUnitTesting
             ActualResult = CustomList - DuplicateList;
 
             //Assert
-            Assert.AreEqual(ExpectedResult, ActualResult);
+            Assert.AreEqual(ExpectedResult[1], ActualResult[1]);
 
         }
 
+        /*
         [TestMethod]
         public void UsingMinusOverloadTwice()
         {
@@ -471,5 +475,7 @@ namespace GenericListUnitTesting
 
         }
         */
+
+
     }
 }

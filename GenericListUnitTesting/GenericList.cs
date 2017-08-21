@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -15,6 +16,7 @@ namespace GenericListUnitTesting
         private bool IsFirstArray;
         private bool IsRemoveUsed;
         private int numbersRemoved;
+        private string StringResult;
 
         public GenericList()
         {
@@ -135,12 +137,44 @@ namespace GenericListUnitTesting
 
             IsRemoveUsed = true;
         }
-      /*   
-        public string AsString()
+          
+          public string AsString()
+          {
+
+            for(int x = 0; x < size; x++) {
+                StringResult += string.Join("", itemArray[x]);
+            }
+
+              return StringResult;
+          }
+
+       public void Zip(GenericList<T> FirstList, GenericList<T> SecondList)
         {
+            if(FirstList.capacity == 0)
+            {
+                FirstList.capacity = FirstList.itemArray.Count();
+            }
+            GenericList<T> ListResult = new GenericList<T>();
+           
+            for (int x = 0; x < FirstList.capacity; x++)
+            {
+                ListResult.Add(FirstList[x]);
+                ListResult.Add(SecondList[x]);
+            }
+
+            itemArray = new T[ListResult.capacity]; 
+
+            for(int y = 0; y < ListResult.capacity; y++)
+            {
+                itemArray[y] = ListResult[y];
+            }
             
-            return "";
         }
-        */
+
+        public static GenericList<T> operator +(GenericList<T> FirstList, GenericList<T> SecondList)
+        {
+
+        }
+
     }
 }

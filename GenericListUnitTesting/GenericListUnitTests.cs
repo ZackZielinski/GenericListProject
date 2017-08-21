@@ -152,7 +152,7 @@ namespace GenericListUnitTesting
             Assert.AreEqual(ExpectedResults, CustomList.Count);
         }
 
-       /* 
+       
         [TestMethod]
         public void ConvertListToAString()
         {
@@ -169,10 +169,10 @@ namespace GenericListUnitTesting
             ActualResult = CustomList.AsString();
 
             //Assert
-            Assert.IsTrue(ExpectedResult == ActualResult);
+            Assert.AreEqual(ExpectedResult, ActualResult);
 
         }
-        */
+        
         
         [TestMethod]
         public void DoestheListRemoveOneValue()
@@ -246,14 +246,16 @@ namespace GenericListUnitTesting
 
         }
         
-        /*
+        
         [TestMethod]
         public void DoCustomArraysZipIntegers()
         {
             //Arrange
             GenericList<int> OddNumberList = new GenericList<int>();
             GenericList<int> EvenNumberList = new GenericList<int>();
+            GenericList<int> ZippedList = new GenericList<int>();
 
+            int ExpectedResult = 6;
 
             //Act
             OddNumberList.Add(1);
@@ -264,19 +266,19 @@ namespace GenericListUnitTesting
             EvenNumberList.Add(4);
             EvenNumberList.Add(6);
 
-            GenericList<int> result = OddNumberList.Zip(EvenNumberList);
+            ZippedList.Zip(OddNumberList,EvenNumberList);
             
             //Assert
-            Assert.IsTrue(result[5] == 6);
+            Assert.AreEqual(ExpectedResult, ZippedList[5]);
         }
-
+        
         [TestMethod]
         public void DoCustomArraysZipStrings()
         {
             //Arrange
             GenericList<string> NumberList = new GenericList<string>();
             GenericList<string> WordList = new GenericList<string>();
-
+            GenericList<string> ResultList = new GenericList<string>();
 
             //Act
             NumberList.Add("1");
@@ -287,11 +289,13 @@ namespace GenericListUnitTesting
             WordList.Add("two");
             WordList.Add("three");
 
-            GenericList<string> result = NumberList.Zip(WordList);
+            ResultList.Zip(NumberList, WordList);
 
             //Assert
-            Assert.IsTrue(NumberList[6].ToString() == "three");
+            Assert.AreEqual(WordList[2], ResultList[6]);
         }
+  
+
         [TestMethod]
         public void DoCustomArraysZipAZippedList()
         {
@@ -300,6 +304,8 @@ namespace GenericListUnitTesting
             GenericList<int> EvenNumberList = new GenericList<int>();
             GenericList<int> CounterList = new GenericList<int>();
             GenericList<int> CustomList =  new GenericList<int>();
+            GenericList<int> ResultList = new GenericList<int>();
+
             //Act
             OddNumberList.Add(1);
             OddNumberList.Add(3);
@@ -316,14 +322,14 @@ namespace GenericListUnitTesting
             CounterList.Add(11);
             CounterList.Add(12);
 
-            OddNumberList.Zip(EvenNumberList);
+            CustomList.Zip(OddNumberList, EvenNumberList);
 
-            CustomList = OddNumberList.Zip(CounterList);
+            ResultList.Zip(CustomList, CounterList);
 
             //Assert
-            Assert.IsTrue(CustomList[11] == 12);
+            Assert.AreEqual(CounterList[5], ResultList[11]);
         }
-        */
+
         [TestMethod]
         public void DoestheListSwapTwoValues()
         {
@@ -340,7 +346,7 @@ namespace GenericListUnitTesting
             //Assert
             Assert.IsTrue(FirstNumberToSwap == NewFirstNumber && SecondNumberToSwap == NewSecondNumber);
         }
-        /*
+        
         [TestMethod]
         public void OverloadingPlusOperator()
         {
@@ -365,6 +371,7 @@ namespace GenericListUnitTesting
 
         }
 
+        /*
 
         [TestMethod]
         public void UseageOfPlusOperatorTwice()

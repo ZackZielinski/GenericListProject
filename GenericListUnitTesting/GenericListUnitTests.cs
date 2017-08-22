@@ -438,7 +438,7 @@ namespace GenericListUnitTesting
 
         }
 
-        /*
+        
         [TestMethod]
         public void UsingMinusOverloadTwice()
         {
@@ -447,7 +447,8 @@ namespace GenericListUnitTesting
             GenericList<int> ExpectedResult = new GenericList<int>();
             GenericList<int> CustomList = new GenericList<int>();
             GenericList<int> DuplicateList = new GenericList<int>();
-            int ActualResult;
+            GenericList<int> SubtractedList = new GenericList<int>();
+            GenericList<int> ActualResult = new GenericList<int>();
 
             //Act
             ExpectedResult.Add(1);
@@ -468,13 +469,15 @@ namespace GenericListUnitTesting
             DuplicateList.Add(5);
             DuplicateList.Add(6);
 
-            ActualResult = (NumberList - CustomList) - DuplicateList;
+            SubtractedList = NumberList - CustomList;
+
+            ActualResult = SubtractedList - DuplicateList;
 
             //Assert
-            Assert.AreEqual(ExpectedResult, ActualResult);
+            Assert.AreEqual(ExpectedResult[1], ActualResult[1]);
 
         }
-        */
+        
 
 
     }

@@ -206,22 +206,21 @@ namespace GenericListUnitTesting
         public static GenericList<T> operator -(GenericList<T> FirstList, GenericList<T> SecondList)
         {
             GenericList<T> SubtractedList = new GenericList<T>();
-            
 
+           
             for (int x = 0; x < SecondList.size; x++)
             {
-                bool IsDuplicate = false;
 
                 for (int y = 0; y < FirstList.size; y++)
                 {
                     if (FirstList[y].Equals(SecondList[x]))
                     {
-                        IsDuplicate = true;
                         break;
                     }
-                    else if (IsDuplicate == false)
+                    else
                     {
                         SubtractedList.Add(FirstList[y]);
+
                     }
                 }
             }
